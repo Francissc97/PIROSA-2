@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIROSA | Energía Renovable a partir de Plástico</title>
+    <!-- Referencia al favicon (Opcional, si tienes uno) -->
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    
+    <style>
+        /* =========================================
+           VARIABLES Y TIPOGRAFÍA (Verde Ecológico)
+           ========================================= */
+        @font-face {
+            font-family: 'Inter';
+            src: url('fonts/inter.woff2') format('woff2');
+            font-weight: 400 700;
+            font-style: normal;
+        }
+
+        :root {
+            --primary-green: #16A34A; /* Verde esmeralda (Botones e íconos) */
+            --dark-green: #064E3B; /* Verde bosque oscuro (Títulos) */
+            --bg-light: #F4F7F6; /* Fondo general claro */
+            --bg-white: #FFFFFF; /* Fondo de tarjetas y header */
+            --text-dark: #1F2937; /* Texto general oscuro */
+            --text-light: #6B7280; /* Texto secundario gris */
+            --border-color: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           CABECERA (NAVBAR)
+           ========================================= */
+        header {
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container img {
+            height: 40px; /* Tamaño del logo del león */
+        }
+
+        .logo-container h1 {
+            font-size: 1.5rem;
+            color: var(--dark-green);
+            margin: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-green);
+        }
+
+        /* =========================================
+           BOTONES
+           ========================================= */
+        .btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-green);
+            color: var(--bg-white);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #15803D; /* Verde más oscuro al hover */
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-green);
+            color: var(--bg-white);
+        }
+
+        /* =========================================
+           SECCIÓN HERO (PRINCIPAL)
+           ========================================= */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: var(--bg-white);
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* =========================================
+           SECCIONES GENERALES
+           ========================================= */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 50px;
+        }
+
+        /* =========================================
+           SECCIÓN BENEFICIOS (TARJETAS)
+           ========================================= */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background-color: var(--bg-white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-green);
+        }
+
+        .benefit-card h3 {
+            color: var(--dark-green);
+            margin-bottom: 15px;
+        }
+
+        /* =========================================
+           SECCIÓN PROCESO (PASOS)
+           ========================================= */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            background-color: var(--primary-green);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        /* =========================================
+           SECCIÓN SOBRE NOSOTROS
+           ========================================= */
+        .about-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* =========================================
+           TRUST SIGNALS (LOGOS)
+           ========================================= */
+        .trust-signals {
+            background-color: var(--bg-white);
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .trust-signals p {
+            color: var(--text-light);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .logos-container span {
+            font-size: 1.2rem;
+            color: var(--dark-green);
+            font-weight: bold;
+            opacity: 0.7;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--bg-white);
+            padding: 60px 5% 20px 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: var(--bg-white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col a:hover {
+            opacity: 1;
+            color: var(--primary-green);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header>
+        <div class="logo-container">
+            <!-- AQUÍ SE USA LA IMAGEN DEL LEÓN VERDE QUE PROPORCIONASTE -->
+            <img src="WhatsApp Image 2026-10-19 at 9.09.41 AM.jpeg" alt="Logo PIROSA">
+            <h1>PIROSA</h1>
+        </div>
+        <nav>
+            <a href="#como-funciona">Cómo funciona</a>
+            <a href="#beneficios">Beneficios</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto" class="btn btn-primary">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h2>Tu basura plástica ya es gasolina.</h2>
+        <p>Convertimos residuos plásticos en gasolina libre de azufre, y residuos orgánicos en gas renovable.</p>
+        <div class="hero-buttons">
+            <a href="https://wa.me/tunumerodewhatsapp" class="btn btn-primary" target="_blank">Escríbenos por WhatsApp</a>
+            <a href="#como-funciona" class="btn btn-secondary">Cómo funciona</a>
+        </div>
+    </section>
+
+    <!-- TRUST SIGNALS -->
+    <div class="trust-signals">
+        <p>PROYECTO DE INGENIERÍA CON RESPALDO Y ESTÁNDARES INTERNACIONALES</p>
+        <div class="logos-container">
+            <span>Calidad ASTM</span>
+            <span>Economía Circular</span>
+            <span>Innovación CleanTech</span>
+            <!-- Aquí puedes añadir logos reales usando <img> más adelante -->
+        </div>
+    </div>
+
+    <!-- SECCIÓN BENEFICIOS -->
+    <section id="beneficios">
+        <h2 class="section-title">Impacto y Beneficios</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>Cero Emisiones Netas</h3>
+                <p>Nuestro proceso captura emisiones contaminantes, ofreciendo una alternativa limpia frente a los combustibles fósiles tradicionales.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Economía Circular</h3>
+                <p>Transformamos el plástico de un problema ambiental grave a un recurso energético de alto valor comercial.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Combustible Premium</h3>
+                <p>Obtenemos una gasolina sintética de más de 100 octanos, totalmente libre de azufre, ideal para uso industrial.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PROCESO -->
+    <section id="como-funciona" style="background-color: var(--bg-white);">
+        <h2 class="section-title">Nuestro Proceso Tecnológico</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Recolección y Preparación</h3>
+                    <p>Acopiamos y pre-tratamos los residuos plásticos, preparándolos para el proceso de transformación.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>Tecnología de Pirólisis</h3>
+                    <p>Sometemos el plástico a altas temperaturas en ausencia de oxígeno, rompiendo sus cadenas moleculares sin combustión.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>Condensación y Refinado</h3>
+                    <p>Los gases obtenidos se enfrían en nuestro sistema optimizado, transformándose en combustible líquido y reteniendo impurezas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN SOBRE NOSOTROS -->
+    <section id="nosotros">
+        <h2 class="section-title">Nuestra Misión</h2>
+        <div class="about-content">
+            <p><strong>PIROSA</strong> nace como una respuesta innovadora desde la ingeniería agroindustrial para solucionar la crisis de los residuos sólidos. Nuestro objetivo es validar y escalar tecnología de vanguardia que convierta la basura en energía, impulsando el desarrollo sostenible de nuestra región y creando nuevas oportunidades en el sector energético limpio.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>PIROSA</h4>
+                <p>Tecnología peruana transformando residuos en energía limpia y sostenible.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#como-funciona">Proceso</a></li>
+                    <li><a href="#beneficios">Beneficios</a></li>
+                    <li><a href="#nosotros">Sobre el Proyecto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul>
+                    <li>Email: contacto@pirosa.com</li>
+                    <li>WhatsApp: +51 999 999 999</li>
+                    <li>Sede: Huánuco, Perú</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PIROSA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
